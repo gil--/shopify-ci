@@ -12,12 +12,14 @@ jobs:
           name: Restore Yarn Package Cache
           keys:
             - yarn-packages-{{ checksum "yarn.lock" }}
-      - run: yarn
+      - run: 
+          name: Install Yarn Dependencies
+          command: yarn
       - save_cache:
           name: Save Yarn Package Cache
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn
+            - ./node_modules
       # Lint Theme
       - run: yarn lint
       # Build Theme into .Zip
@@ -28,16 +30,14 @@ jobs:
           command: |
             mkdir export
             cp starter-theme.zip export/theme.zip
-      # - store_artifacts:
-      #     path: /tmp/artifacts
-      # - store_artifacts:
-      #     path: export
-      # Upload to Netlify & Deploy
-      #NETLIFY_SITE_ID
-      #NETLIFY_AUTH_TOKEN
-      - run: ./node_modules/.bin/netlify deploy --dir=export --auth=${NETLIFY_AUTH_TOKEN} --site=${NETLIFY_SITE_ID} --prod
+      # Upload to Netlify & Deploy (Public Url for Shopify to Fetch Theme)
+      - run: 
+          name: Upload Theme.zip to Netlify
+          command: ./node_modules/.bin/netlify deploy --dir=export --auth=${NETLIFY_AUTH_TOKEN} --site=${NETLIFY_SITE_ID} --prod
       # Upload Theme to Shopify
-      - run: .circleci/theme-upload.js
+      - run:
+          name: Upload Theme to Shopify
+          command: .circleci/theme-upload.js
       # List Shopify Themes
       - run: yarn list-themes
       # Continously Check for Preview Available (Can browser test...)

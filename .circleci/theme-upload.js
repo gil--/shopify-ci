@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const Shopify = require('shopify-api-node');
-//const program = require('commander');
 const bot = require('circle-github-bot').create();
 
 require('dotenv').config();
@@ -33,11 +32,7 @@ const shopify = new Shopify({
     🌈 Create New Theme Based on Build
 */
 const themeName = `Debut-${Date.now()}`;
-//const themeUrl = `${process.env.CIRCLE_BUILD_URL}/artifacts/0/${process.env.HOME}/repo/export/theme.zip`;
-const themeUrl = `https://5ce8c36a43aa24a5254486fb--loving-turing-94c788.netlify.com/theme.zip`;
-
-//console.log(`${process.env.CIRCLE_BUILD_URL}/artifacts/0/tmp/artifacts/theme.zip`);
-console.log(themeUrl);
+const themeUrl = `https://loving-turing-94c788.netlify.com/theme.zip`;
 
 shopify.theme.create({
     name: themeName,
