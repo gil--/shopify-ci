@@ -43,7 +43,7 @@ jobs:
       # Continously Check for Preview Available
       - run: 
           name: Check If Theme is Previewable
-          command: yarn .circleci/theme-upload.js
+          command: .circleci/theme-check.js
       # Begin Fulls-site QA (Add as a new Job)
 
       
