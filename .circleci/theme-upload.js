@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const Shopify = require('shopify-api-node');
 //const program = require('commander');
 const bot = require('circle-github-bot').create();
@@ -30,11 +32,15 @@ const shopify = new Shopify({
 /*
     🌈 Create New Theme Based on Build
 */
-//console.log(`${process.env.CIRCLE_BUILD_URL}/artifacts/0/tmp/artifacts/theme.zip`);
+const themeName = `Debut-${Date.now()}`;
+const themeUrl = `${process.env.CIRCLE_BUILD_URL}/artifacts/0/tmp/artifacts/theme.zip`;
+
+console.log(`${process.env.CIRCLE_BUILD_URL}/artifacts/0/tmp/artifacts/theme.zip`);
 console.log(`${process.env.CIRCLE_BUILD_URL}/artifacts/0/${process.env.HOME}/project/starter-theme.zip`);
+
 shopify.theme.create({
-    name: `Debut-${Date.now()}`,
-    src: `${process.env.CIRCLE_BUILD_URL}/artifacts/0/${process.env.HOME}/project/starter-theme.zip`,
+    name: themeName,
+    src: themeUrl,
 }).then(theme => {
     console.log(theme);
     console.log(`\x1b[33m %s \x1b[0m`, `View Theme at https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${theme.id}`)
@@ -47,6 +53,4 @@ shopify.theme.create({
 }).catch(err => console.error(err.response.body));
 
 
-// bot.comment(`
-//         <h3>Live Demo of Shopify Theme</h3>
-//     `);
+bot.comment(`Hi!`);
