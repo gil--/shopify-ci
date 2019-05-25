@@ -8,15 +8,15 @@ jobs:
 
     steps:
       - checkout
-      #- restore_cache:
-          # Find a cache corresponding to those specific yarn.lock and .yarnclean checksums
-          # when these files are changed, this key will fail
-      #    key: v3-npm-deps-{{ arch }}-{{ checksum "yarn.lock" }}-{{ checksum ".yarnclean" }}
-      - run: yarn
-      #- save_cache:
-      #    key: v3-npm-deps-{{ arch }}-{{ checksum "yarn.lock" }}-{{ checksum ".yarnclean" }}
-      #    paths:
-      #      - node_modules
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
       # Lint Theme
       - run: yarn lint
       # Build Theme into .Zip
