@@ -26,9 +26,9 @@ jobs:
           name: Move Theme Zip into Artifacts
           command: |
             mkdir /tmp/artifacts;
-            mv starter-theme.zip /tmp/artifacts/theme.zip
-      - store_artifacts:
-        path: /tmp/artifacts
+            cp starter-theme.zip /tmp/artifacts/theme.zip
+      # - store_artifacts:
+      #     path: /tmp/artifacts
       # Upload Theme to Dropbox/MSDrive
       # - run:
       #   name: Upload to 
