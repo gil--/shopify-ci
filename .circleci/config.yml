@@ -17,10 +17,10 @@ jobs:
       #    key: v3-npm-deps-{{ arch }}-{{ checksum "yarn.lock" }}-{{ checksum ".yarnclean" }}
       #    paths:
       #      - node_modules
-      # Lint Code
-      #- run: yarn lint
-      # Build Theme into .zip
-      - run: yarn zip --skipPrompts
+      # Lint Theme
+      - run: yarn lint
+      # Build Theme into .Zip
+      - run: yarn zip
       # TODO: Upload Theme to Dropbox/MSDrive
       # - run:
       #   name: Upload to 
