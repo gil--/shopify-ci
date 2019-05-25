@@ -2,6 +2,9 @@ const Shopify = require('shopify-api-node');
 const program = require('commander');
 require('dotenv').config();
 
+/*
+    🎨 Get Theme Url from Arguments
+*/
 let themeUrl = null;
 
 program
@@ -16,12 +19,19 @@ if (!program.theme) {
     themeUrl = program.theme;
 }
 
+/*
+    💪 Get Environment Variables
+*/
 const {
     SHOP_NAME,
     API_KEY,
-    API_PASSWORD,
-    THEME_URL
+    API_PASSWORD
 } = process.env;
+
+if (!SHOP_NAME || !API_KEY || !API_PASSWORD) {
+    console.log('\x1b[31m%s\x1b[0m \x1b[1m%s\x1b[0m', '🔔 Missing required ENV variables. Make sure the following exist:', 'SHOP_NAME, API_KEY, API_PASSWORD');
+    process.exit();
+}
 
 /*
     📡 Initialize Shopify API Creds
@@ -32,9 +42,9 @@ const shopify = new Shopify({
     password: API_PASSWORD,
 });
 
-//
-//  🌈 Create New Theme Based on Build
-//
+/*
+    🌈 Create New Theme Based on Build
+*/
 shopify.theme.create({
     name: `Debut-${Date.now()}`,
     src: themeUrl,

@@ -2,11 +2,19 @@ const Shopify = require('shopify-api-node');
 
 require('dotenv').config();
 
+/*
+💪 Get Environment Variables
+*/
 const {
     SHOP_NAME,
     API_KEY,
     API_PASSWORD
 } = process.env;
+
+if (!SHOP_NAME || !API_KEY || !API_PASSWORD) {
+    console.log('\x1b[31m%s\x1b[0m \x1b[1m%s\x1b[0m', '🔔 Missing required ENV variables. Make sure the following exist:', 'SHOP_NAME, API_KEY, API_PASSWORD');
+    process.exit();
+}
 
 /*
     📡 Initialize Shopify API Creds
