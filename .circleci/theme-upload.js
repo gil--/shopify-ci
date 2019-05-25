@@ -30,11 +30,11 @@ const shopify = new Shopify({
 /*
     🌈 Create New Theme Based on Build
 */
-console.log(`${process.env.CIRCLE_BUILD_URL}/artifacts/0/tmp/artifacts/theme.zip`);
-console.log(`Debut-${Date.now()}`);
+//console.log(`${process.env.CIRCLE_BUILD_URL}/artifacts/0/tmp/artifacts/theme.zip`);
+console.log(`${process.env.CIRCLE_BUILD_URL}/artifacts/0/${process.env.HOME}/project/starter-theme.zip`);
 shopify.theme.create({
     name: `Debut-${Date.now()}`,
-    src: `${process.env.CIRCLE_BUILD_URL}/artifacts/0/tmp/artifacts/theme.zip`,
+    src: `${process.env.CIRCLE_BUILD_URL}/artifacts/0/${process.env.HOME}/project/starter-theme.zip`,
 }).then(theme => {
     console.log(theme);
     console.log(`\x1b[33m %s \x1b[0m`, `View Theme at https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${theme.id}`)
