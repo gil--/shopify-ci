@@ -35,7 +35,7 @@ jobs:
       # Upload to Netlify & Deploy
       #NETLIFY_SITE_ID
       #NETLIFY_AUTH_TOKEN
-      - run: ./node_modules/.bin/netlify deploy --dir=export --auth=${NETLIFY_AUTH_TOKEN} --site=${NETLIFY_SITE_ID}
+      - run: ./node_modules/.bin/netlify deploy --dir=export --auth=${NETLIFY_AUTH_TOKEN} --site=${NETLIFY_SITE_ID} --prod
       # Upload Theme to Shopify
       - run: .circleci/theme-upload.js
       # List Shopify Themes
