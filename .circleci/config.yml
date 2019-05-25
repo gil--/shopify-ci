@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    docker: 
+      - image: circleci/node:10
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          # Find a cache corresponding to those specific yarn.lock and .yarnclean checksums
+          # when these files are changed, this key will fail
+          key: v3-npm-deps-{{ arch }}-{{ checksum "yarn.lock" }}-{{ checksum ".yarnclean" }}
+      - run: yarn
+      - save_cache:
+          key: v3-npm-deps-{{ arch }}-{{ checksum "yarn.lock" }}-{{ checksum ".yarnclean" }}
+          paths:
+            - node_modules
+      # Lint Code
+      - run: yarn lint
+      # Build Theme into .zip
+      - run: yarn zip
+      # TODO: Upload Theme to Dropbox/MSDrive
+      # - run:
+      #   name: Upload to 
+      #   command: curl https://slack.com/api/files.upload -F token="${SLACK_TOKEN}" -F channels="${SLACK_CHANNEL}" -F title="${apk_name}" -F filename="${apk_name}" -F file=@app/build/outputs/apk/debug/app-debug.apk
+      # TODO: Upload Theme to Shopify
+      - run: yarn list-themes
+      # Continously Check for Preview Available (Can browser test...)
+
+      
