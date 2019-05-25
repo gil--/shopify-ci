@@ -40,6 +40,10 @@ jobs:
           command: .circleci/theme-upload.js
       # List Shopify Themes
       - run: yarn list-themes
-      # Continously Check for Preview Available (Can browser test...)
+      # Continously Check for Preview Available
+      - run: 
+          name: Check If Theme is Previewable
+          command: yarn .circleci/theme-upload.js
+      # Begin Fulls-site QA (Add as a new Job)
 
       

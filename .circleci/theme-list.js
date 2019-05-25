@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const Shopify = require('shopify-api-node');
 
 require('dotenv').config();
