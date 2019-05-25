@@ -8,19 +8,19 @@ jobs:
 
     steps:
       - checkout
-      - restore_cache:
+      #- restore_cache:
           # Find a cache corresponding to those specific yarn.lock and .yarnclean checksums
           # when these files are changed, this key will fail
-          key: v3-npm-deps-{{ arch }}-{{ checksum "yarn.lock" }}-{{ checksum ".yarnclean" }}
+      #    key: v3-npm-deps-{{ arch }}-{{ checksum "yarn.lock" }}-{{ checksum ".yarnclean" }}
       - run: yarn
-      - save_cache:
-          key: v3-npm-deps-{{ arch }}-{{ checksum "yarn.lock" }}-{{ checksum ".yarnclean" }}
-          paths:
-            - node_modules
+      #- save_cache:
+      #    key: v3-npm-deps-{{ arch }}-{{ checksum "yarn.lock" }}-{{ checksum ".yarnclean" }}
+      #    paths:
+      #      - node_modules
       # Lint Code
-      - run: yarn lint
+      #- run: yarn lint
       # Build Theme into .zip
-      - run: yarn zip
+      - run: yarn zip --skipPrompts
       # TODO: Upload Theme to Dropbox/MSDrive
       # - run:
       #   name: Upload to 
