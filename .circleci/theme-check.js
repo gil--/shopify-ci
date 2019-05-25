@@ -51,8 +51,14 @@ const checkIfThemeIsPreviewable = () => {
             if (result[0].previewable) {
                 console.log('✅ Theme is now previewable!')
                 console.log(`\x1b[33m %s \x1b[0m`, `https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${result[0].id}`)
-                Github.comment(`[https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${result[0].id}](View Preview of Changes)
-                > This comment was made automatically by CircleCI`);
+                Github.comment(`
+##### Successfully Deployed Shopify Theme Preview
+                
+[View Preview on Shopify](https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${result[0].id})
+                
+> ###### This comment was made automatically by CircleCI
+                
+                `);
                 //clearInterval(t);
                 process.exit();
             } else {
