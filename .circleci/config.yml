@@ -21,11 +21,22 @@ jobs:
       - run: yarn lint
       # Build Theme into .Zip
       - run: yarn zip
-      # TODO: Upload Theme to Dropbox/MSDrive
+      # Move Theme Zip into Artifacts
+      - run: 
+          name: Move Theme Zip into Artifacts
+          command: |
+            mkdir /tmp/artifacts;
+            mv starter-theme.zip /tmp/artifacts/theme.zip
+      - store_artifacts:
+        path: /tmp/artifacts
+      # Upload Theme to Dropbox/MSDrive
       # - run:
       #   name: Upload to 
-      #   command: curl https://slack.com/api/files.upload -F token="${SLACK_TOKEN}" -F channels="${SLACK_CHANNEL}" -F title="${apk_name}" -F filename="${apk_name}" -F file=@app/build/outputs/apk/debug/app-debug.apk
-      # TODO: Upload Theme to Shopify
+      #   command: |
+      # curl https://slack.com/api/files.upload -F token="${SLACK_TOKEN}" -F channels="${SLACK_CHANNEL}" -F title="${apk_name}" -F filename="${apk_name}" -F file=@app/build/outputs/apk/debug/app-debug.apk
+      # Upload Theme to Shopify
+      - run: yarn create-theme
+      # List Shopify Themes
       - run: yarn list-themes
       # Continously Check for Preview Available (Can browser test...)
 

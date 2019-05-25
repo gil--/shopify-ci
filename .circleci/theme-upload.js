@@ -1,23 +1,8 @@
 const Shopify = require('shopify-api-node');
-const program = require('commander');
+//const program = require('commander');
+const bot = require('circle-github-bot').create();
+
 require('dotenv').config();
-
-/*
-    🎨 Get Theme Url from Arguments
-*/
-let themeUrl = null;
-
-program
-    .version('0.0.1')
-    .option('-t, --theme [url]', 'Add the specified theme.zip url [url]')
-    .parse(process.argv);
-
-if (!program.theme) {
-    console.log('\x1b[31m%s\x1b[0m\x1b[33m %s \x1b[0m', '🔔 Missing theme url. Add:', '--theme [url]');
-    process.exit();
-} else {
-    themeUrl = program.theme;
-}
 
 /*
     💪 Get Environment Variables
@@ -47,8 +32,13 @@ const shopify = new Shopify({
 */
 shopify.theme.create({
     name: `Debut-${Date.now()}`,
-    src: themeUrl,
+    src: `${process.env.CIRCLE_BUILD_URL}/artifacts/0/${process.env.HOME}/project/build/theme.zip`,
 }).then(theme => {
     console.log(theme);
     console.log(`\x1b[33m %s \x1b[0m`, `View Theme at https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${theme.id}`)
+
+    bot.comment(`
+        <h3>Live Demo of Shopify Theme</h3>
+        Demo: <strong>${bot.artifactLink(`https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${theme.id}`, 'view theme demo')}</strong>
+    `);
 }, err => console.error(err));
