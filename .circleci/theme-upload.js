@@ -30,6 +30,8 @@ const shopify = new Shopify({
 /*
     🌈 Create New Theme Based on Build
 */
+console.log(`${process.env.CIRCLE_BUILD_URL}/artifacts/0/tmp/artifacts/theme.zip`);
+console.log(`Debut-${Date.now()}`);
 shopify.theme.create({
     name: `Debut-${Date.now()}`,
     src: `${process.env.CIRCLE_BUILD_URL}/artifacts/0/tmp/artifacts/theme.zip`,
@@ -42,7 +44,7 @@ shopify.theme.create({
     //     Demo: <strong>${bot.artifactLink(`https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${theme.id}`, 'view theme demo')}</strong>
     // `);
 
-}, err => console.error(err));
+}).catch(err => console.error(err));
 
 
 // bot.comment(`
