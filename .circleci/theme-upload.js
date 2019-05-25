@@ -45,6 +45,6 @@ shopify.theme.create({
 }, err => console.error(err));
 
 
-bot.comment(`
-        <h3>Live Demo of Shopify Theme</h3>
-    `);
+// bot.comment(`
+//         <h3>Live Demo of Shopify Theme</h3>
+//     `);

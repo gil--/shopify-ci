@@ -28,8 +28,9 @@ jobs:
           command: |
             mkdir /tmp/artifacts;
             cp starter-theme.zip /tmp/artifacts/theme.zip
-      # - store_artifacts:
-      #     path: /tmp/artifacts
+            ls
+      - store_artifacts:
+          path: /tmp/artifacts
       # Upload Theme to Dropbox/MSDrive
       # - run:
       #   name: Upload to 
