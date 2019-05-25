@@ -46,5 +46,5 @@ shopify.theme.create({
 
 
 bot.comment(`
-        <h3>Live Demo of Shopify Theme</h3> ${process.env.CIRCLE_BUILD_URL}/artifacts/0/${process.env.HOME}/project/tmp/artifacts/theme.zip
+        <h3>Live Demo of Shopify Theme</h3>
     `);
