@@ -28,9 +28,13 @@ jobs:
           command: |
             mkdir /tmp/artifacts;
             cp starter-theme.zip /tmp/artifacts/theme.zip
+            mkdir export
+            cp starter-theme.zip export/theme.zip
             ls
       - store_artifacts:
           path: /tmp/artifacts
+      - store_artifacts:
+          path: export
       # Upload Theme to Shopify
       - run: .circleci/theme-upload.js
       # List Shopify Themes

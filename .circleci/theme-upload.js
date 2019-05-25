@@ -33,10 +33,10 @@ const shopify = new Shopify({
     🌈 Create New Theme Based on Build
 */
 const themeName = `Debut-${Date.now()}`;
-const themeUrl = `${process.env.CIRCLE_BUILD_URL}/artifacts/0/tmp/artifacts/theme.zip`;
+const themeUrl = `${process.env.CIRCLE_BUILD_URL}/artifacts/0/${process.env.HOME}/project/export/theme.zip`;
 
 console.log(`${process.env.CIRCLE_BUILD_URL}/artifacts/0/tmp/artifacts/theme.zip`);
-console.log(`${process.env.CIRCLE_BUILD_URL}/artifacts/0/${process.env.HOME}/project/starter-theme.zip`);
+console.log(`${process.env.CIRCLE_BUILD_URL}/artifacts/0/${process.env.HOME}/project/export/theme.zip`);
 
 shopify.theme.create({
     name: themeName,
