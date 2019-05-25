@@ -44,7 +44,7 @@ shopify.theme.create({
     //     Demo: <strong>${bot.artifactLink(`https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${theme.id}`, 'view theme demo')}</strong>
     // `);
 
-}).catch(err => console.error(err));
+}).catch(err => console.error(err.response.body));
 
 
 // bot.comment(`
