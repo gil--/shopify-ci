@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 const Shopify = require('shopify-api-node');
+const github = require('ci-github')
+const Github = github.create()
 
 require('dotenv').config();
 
@@ -48,6 +50,8 @@ const checkIfThemeIsPreviewable = () => {
 
             if (result[0].previewable) {
                 console.log('✅ Theme is now previewable!')
+                console.log(`\x1b[33m %s \x1b[0m`, `https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${result[0].id}`)
+                Github.comment(`https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${result[0].id}`);
                 //clearInterval(t);
                 process.exit();
             } else {
