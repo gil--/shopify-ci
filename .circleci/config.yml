@@ -48,7 +48,6 @@ workflows:
   build_and_test:
     jobs:
       - build
-      # Begin Fulls-site QA (Add as a new Job)
-      - cypress/run
+      - cypress/run # Begin Fulls-site QA (Add as a new Job)
 
       
