@@ -1,0 +1,8 @@
+{
+    "projectId": "ndqep9",
+    "baseUrl": "https://theme-ci.myshopify.com",
+    "storePassword": "Password1",
+    "isStorePasswordEnabled": true,
+    "testAccountEmail": "gilgreenberg@gmail.com",
+    "testAccountPassword": "ShopifyCI2020"
+}
