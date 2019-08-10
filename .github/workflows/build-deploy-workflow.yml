@@ -3,7 +3,8 @@ name: Build & Deploy Preview
 on: [push]
 
 jobs:
-  steps:
+  build:
+    steps:
     - uses: actions/checkout@master
 
     - name: Use Node.js 10.x
