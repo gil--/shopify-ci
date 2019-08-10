@@ -1,0 +1,30 @@
+name: Build & Deploy Preview
+# This workflow is triggered on pushes to the repository.
+on: [push]
+
+jobs:
+  steps:
+    - uses: actions/checkout@master
+
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@master
+      with:
+        version: 10.x
+
+    - name: Use Yarn 1.17.2
+      run: |
+        npm install -g yarn@1.17.2
+        
+    - name: Lint Theme
+      run: |
+        yarn lint
+        
+        
+    - name: Zip Theme
+      run: |
+        yarn zip
+        
+    - name: Move Theme Zip into Artifacts
+      run: |
+        mkdir export
+        cp starter-theme.zip export/theme.zip
