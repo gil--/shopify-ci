@@ -52,7 +52,9 @@ jobs:
     
     - name: Testing Comments
       run: |
-        npm i -g ci-github
-        github --coment Fuck yea?! --link https://github.com
+        cat /github/workflow/event.json
+        yarn pr-comment
       env:
-        GH_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        GITHUB_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        GITHUB_REPOSITORY: ${{secrets.GITHUB_REPOSITORY}}
+        GITHUB_EVENT_PATH: ${{secrets.GITHUB_EVENT_PATH}}
