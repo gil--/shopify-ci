@@ -52,6 +52,8 @@
     "lint": "slate-tools lint",
     "format": "slate-tools format",
     "create-theme": "node .circleci/theme-upload.js",
-    "list-themes": "node .circleci/theme-list.js"
+    "list-themes": "node .circleci/theme-list.js",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open"
   }
 }
