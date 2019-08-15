@@ -3,3 +3,9 @@
 describe('Theme Footer', () => {
    
 })
+
+// newsletter
+
+// social
+
+// links

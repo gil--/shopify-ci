@@ -6,7 +6,7 @@ describe('Theme Header', () => {
         cy.visit('/')
     })
 
-    it('should have logo linking to homepage', () => {
+    it('TC15 - should have logo linking to homepage', () => {
         cy.get('.site-header__logo a').should('have.attr', 'href').and('include', '/')
     })
 
