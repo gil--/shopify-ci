@@ -21,9 +21,9 @@ jobs:
         npm install -g yarn@1.17.2
         yarn
         
-    - name: Lint Theme
-      run: |
-        yarn lint --skipPrompts
+#     - name: Lint Theme
+#       run: |
+#         yarn lint
         
     - name: Zip Theme
       run: |
