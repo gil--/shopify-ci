@@ -3,17 +3,16 @@ name: Build & Deploy Preview
 on:
   pull_request:
     branches:
-    - master
-    - develop
-
+      - master
+      - develop
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
 
     - name: Use Node.js 10.x
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v1
       with:
         version: 10.x
 
@@ -25,7 +24,6 @@ jobs:
     - name: Lint Theme
       run: |
         yarn lint --skipPrompts
-        
         
     - name: Zip Theme
       run: |
