@@ -8,18 +8,18 @@ const {
     GITHUB_EVENT_PATH,
 } = process.env;
 
-let GithubEventData = null;
+let prNumber = null;
 
-fs.readFile(GITHUB_EVENT_PATH, function (err, data) {
+fs.readFile(GITHUB_EVENT_PATH, (err, data) => {
     if (err) {
         throw err;
     }
     console.log(data.toString());
-    githubPRNumber = data && data.number;
+    prNumber = data && data.number;
 });
 
-if (typeof githubPRNumber !== null) {
-    comment(GITHUB_AUTH_TOKEN, GITHUB_REPOSITORY, githubPRNumber, 'This is a mother fucking comment.')
+if (typeof prNumber !== null) {
+    comment(GITHUB_AUTH_TOKEN, GITHUB_REPOSITORY, prNumber, 'This is a mother fucking comment.')
         .then(response => console.log(response))
         .catch(error => console.log(error))
 }
