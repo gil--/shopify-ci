@@ -1,6 +1,10 @@
 name: Build & Deploy Preview
 # This workflow is triggered on pushes to the repository.
 on: [push]
+  pull_request:
+    branches:
+    - master
+    - develop
 
 jobs:
   build:
@@ -20,12 +24,12 @@ jobs:
         
     - name: Lint Theme
       run: |
-        yarn lint
+        yarn lint --skipPrompts
         
         
     - name: Zip Theme
       run: |
-        yarn zip
+        yarn zip --skipPrompts
         
     - name: Move Theme Zip into Artifacts
       run: |
