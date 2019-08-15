@@ -52,7 +52,6 @@ jobs:
     
     - name: Testing Comments
       run: |
-        cat /github/workflow/event.json
         yarn pr-comment
       env:
         GITHUB_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
