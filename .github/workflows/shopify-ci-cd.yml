@@ -49,3 +49,10 @@ jobs:
         SHOP_NAME: ${{secrets.SHOP_NAME}}
         API_KEY: ${{secrets.API_KEY}}
         API_PASSWORD: ${{secrets.API_PASSWORD}}
+    
+    - name: Testing Comments
+      run: |
+        npm i -g ci-github
+        github --coment Fuck yea?! --link https://github.com
+      env:
+        GH_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
