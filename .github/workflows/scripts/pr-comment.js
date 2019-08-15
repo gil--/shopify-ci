@@ -18,6 +18,8 @@ fs.readFile(GITHUB_EVENT_PATH, (err, data) => {
     prNumber = data && data.number;
 });
 
+console.log(prNumber);
+
 if (typeof prNumber !== null) {
     comment(GITHUB_AUTH_TOKEN, GITHUB_REPOSITORY, prNumber, 'This is a mother fucking comment.')
         .then(response => console.log(response))
