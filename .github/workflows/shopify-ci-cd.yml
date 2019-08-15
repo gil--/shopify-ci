@@ -27,7 +27,7 @@ jobs:
 
     - name: Lint Theme Locales
       run: |
-        yarn global add @shopify/theme-lint
+        npm i -g @shopify/theme-lint
         theme-lint ./src
     
     # - name: Lint Theme Styles
