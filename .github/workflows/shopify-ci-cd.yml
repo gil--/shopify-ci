@@ -24,12 +24,28 @@ jobs:
 #     - name: Lint Theme
 #       run: |
 #         yarn lint
+
+    - name: Lint Theme Locales
+      run: |
+        yarn global add @shopify/theme-lint
+        theme-lint ./src
+    
+    # - name: Lint Theme Styles
+    #   run: |
+    #     yarn theme-styles
         
     - name: Zip Theme
       run: |
-        yarn zip --skipPrompts
+        yarn theme-zip
         
     - name: Move Theme Zip into Artifacts
       run: |
         mkdir export
-        cp starter-theme.zip export/theme.zip
+        cp theme.zip export/theme.zip
+
+    - name: List All Themes
+    - run: yarn list-themes
+      env:
+        SHOP_NAME: ${{secrets.SHOP_NAME}}
+        API_KEY: ${{secrets.API_KEY}}
+        API_PASSWORD: ${{secrets.API_PASSWORD}}
