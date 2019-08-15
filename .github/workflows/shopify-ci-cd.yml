@@ -44,7 +44,7 @@ jobs:
         cp theme.zip export/theme.zip
 
     - name: List All Themes
-    - run: yarn list-themes
+      run: yarn list-themes
       env:
         SHOP_NAME: ${{secrets.SHOP_NAME}}
         API_KEY: ${{secrets.API_KEY}}
