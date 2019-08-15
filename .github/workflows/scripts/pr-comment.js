@@ -12,10 +12,11 @@ fs.readFile(GITHUB_EVENT_PATH, (err, data) => {
     if (err) {
         throw err;
     }
-    console.log(data.toString());
-    const prNumber = data && data.number;
+    const content = JSON.parse(data.toString());
+    const prNumber = content && content.number;
     
     if (prNumber != null) {
+        console.log('posting comment');
         comment(GITHUB_AUTH_TOKEN, GITHUB_REPOSITORY, prNumber, 'This is a mother fucking comment.')
             .then(response => console.log(response))
             .catch(error => console.log(error))
