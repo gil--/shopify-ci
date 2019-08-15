@@ -8,20 +8,16 @@ const {
     GITHUB_EVENT_PATH,
 } = process.env;
 
-let prNumber = null;
-
 fs.readFile(GITHUB_EVENT_PATH, (err, data) => {
     if (err) {
         throw err;
     }
     console.log(data.toString());
-    prNumber = data && data.number;
+    const prNumber = data && data.number;
+    
+    if (prNumber != null) {
+        comment(GITHUB_AUTH_TOKEN, GITHUB_REPOSITORY, prNumber, 'This is a mother fucking comment.')
+            .then(response => console.log(response))
+            .catch(error => console.log(error))
+    }
 });
-
-console.log(prNumber);
-
-if (typeof prNumber !== null) {
-    comment(GITHUB_AUTH_TOKEN, GITHUB_REPOSITORY, prNumber, 'This is a mother fucking comment.')
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
-}
