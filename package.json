@@ -54,7 +54,6 @@
     "format": "slate-tools format",
     "theme-upload": "node .github/workflows/scripts/theme-upload.js",
     "list-themes": "node .github/workflows/scripts/theme-list.js",
-    "theme-zip": "node .github/workflows/scripts/theme-zip.js",
-    "pr-comment": "node .github/workflows/scripts/pr-comment.js"
+    "theme-zip": "node .github/workflows/scripts/theme-zip.js"
   }
 }

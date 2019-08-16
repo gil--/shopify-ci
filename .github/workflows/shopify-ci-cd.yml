@@ -49,11 +49,6 @@ jobs:
         SHOP_NAME: ${{secrets.SHOP_NAME}}
         API_KEY: ${{secrets.API_KEY}}
         API_PASSWORD: ${{secrets.API_PASSWORD}}
-    
-    - name: Testing Comments
-      run: |
-        yarn pr-comment
-      env:
         GITHUB_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         GITHUB_REPOSITORY: ${{secrets.GITHUB_REPOSITORY}}
         GITHUB_EVENT_PATH: ${{secrets.GITHUB_EVENT_PATH}}

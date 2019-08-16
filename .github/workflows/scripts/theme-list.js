@@ -29,4 +29,4 @@ shopify.theme.list().then(themes => {
     console.log(themes);
 }, err => console.error(err));
 
-await makeAComment('This is a mother fucking comment.');
+makeAComment('This is a mother fucking comment.');
