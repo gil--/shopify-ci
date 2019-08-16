@@ -26,9 +26,8 @@ const shopify = new Shopify({
 });
 
 const listTheme = async () => {
-    shopify.theme.list().then(themes => {
-        console.log(themes);
-    }, err => console.error(err));
+    const themes = await shopify.theme.list(); 
+    console.log(themes);
 
     await makeAComment('This is a mother fucking comment.');
 };

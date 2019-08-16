@@ -18,6 +18,7 @@ module.exports.makeAComment = async (commentContent) => {
         }
         
         const content = JSON.parse(data.toString());
+        console.log(content);
         return content && content.number;
     });
 
