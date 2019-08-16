@@ -1,5 +1,5 @@
 const Shopify = require('shopify-api-node');
-const makeAComment = require('./pr-comment');
+const makeAComment = require('./pr-comment').makeAComment;
 require('dotenv').config();
 
 /*

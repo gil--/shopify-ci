@@ -9,7 +9,7 @@ const {
 } = process.env;
 
 // Make a 💫
-export default makeAComment = async (commentContent) => {
+module.exports.makeAComment = async (commentContent) => {
     const prNumber = await fs.readFile(GITHUB_EVENT_PATH, (err, data) => {
         if (err) {
             throw err;
