@@ -8,17 +8,21 @@ const {
     GITHUB_EVENT_PATH,
 } = process.env;
 
-fs.readFile(GITHUB_EVENT_PATH, (err, data) => {
-    if (err) {
-        throw err;
-    }
-    const content = JSON.parse(data.toString());
-    const prNumber = content && content.number;
+// Make a 💫
+export default makeAComment = async (commentContent) => {
+    const prNumber = await fs.readFile(GITHUB_EVENT_PATH, (err, data) => {
+        if (err) {
+            throw err;
+        }
+        
+        const content = JSON.parse(data.toString());
+        return content && content.number;
+    });
     
     if (prNumber != null) {
         console.log('posting comment');
-        comment(GITHUB_AUTH_TOKEN, GITHUB_REPOSITORY, prNumber, 'This is a mother fucking comment.')
+        comment(GITHUB_AUTH_TOKEN, GITHUB_REPOSITORY, prNumber, commentContent)
             .then(response => console.log(response))
             .catch(error => console.log(error))
     }
-});
+};
