@@ -16,18 +16,13 @@ module.exports.makeAComment = async (commentContent) => {
         if (err) {
             throw err;
         }
-        
         const content = JSON.parse(data.toString());
-        console.log(content);
-        return content && content.number;
-    });
-
-    console.log('prNumber', prNumber);
-    
-    if (prNumber != null) {
-        console.log('posting comment');
-        comment(GITHUB_AUTH_TOKEN, GITHUB_REPOSITORY, prNumber, commentContent)
-            .then(response => console.log(response))
-            .catch(error => console.log(error))
-    }
+        
+        if (content.number != null) {
+            console.log('posting comment');
+            comment(GITHUB_AUTH_TOKEN, GITHUB_REPOSITORY, content.number, commentContent)
+                .then(response => console.log(response))
+                .catch(error => console.log(error))
+        }
+    });    
 };
