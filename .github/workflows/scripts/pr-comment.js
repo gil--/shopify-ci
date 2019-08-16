@@ -10,6 +10,8 @@ const {
 
 // Make a 💫
 module.exports.makeAComment = async (commentContent) => {
+    console.log('commentContent', commentContent);
+
     const prNumber = await fs.readFile(GITHUB_EVENT_PATH, (err, data) => {
         if (err) {
             throw err;
@@ -18,6 +20,8 @@ module.exports.makeAComment = async (commentContent) => {
         const content = JSON.parse(data.toString());
         return content && content.number;
     });
+
+    console.log('prNumber', prNumber);
     
     if (prNumber != null) {
         console.log('posting comment');

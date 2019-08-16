@@ -25,8 +25,12 @@ const shopify = new Shopify({
     password: API_PASSWORD,
 });
 
-shopify.theme.list().then(themes => {
-    console.log(themes);
-}, err => console.error(err));
+const listTheme = async () => {
+    shopify.theme.list().then(themes => {
+        console.log(themes);
+    }, err => console.error(err));
 
-makeAComment('This is a mother fucking comment.');
+    await makeAComment('This is a mother fucking comment.');
+};
+
+listTheme();

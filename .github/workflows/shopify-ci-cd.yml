@@ -1,13 +1,20 @@
-name: Build & Deploy Preview
+name: Shopify CI/CD
 # This workflow is triggered on pushes to the repository.
 on:
   pull_request:
     branches:
       - master
       - develop
+  push:
+    branches:
+      - master
+      - develop
+
 jobs:
   build:
+    name: Build + Deploy Preview
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v1
 
