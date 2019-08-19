@@ -27,32 +27,29 @@ jobs:
       run: |
         npm install -g yarn@1.17.2
         yarn
-        
-#     - name: Lint Theme
-#       run: |
-#         yarn lint
 
     - name: Lint Theme Locales
       run: |
         npm i -g @shopify/theme-lint
         theme-lint ./src
+
+    # - name: TODO: Lint Theme JS
+    #   run: yarn lint
     
-    # - name: Lint Theme Styles
-    #   run: |
-    #     yarn theme-styles
+    # - name: TODO: Lint Theme Styles
+    #   run: yarn theme-styles
 
     # Copy down staging src/config/settings_data.json ?
+
+    # - name: List All Themes
+    #   run: node .github/workflows/scripts/theme-list.js
+    #   env:
+    #     SHOP_NAME: ${{secrets.SHOP_NAME}}
+    #     API_KEY: ${{secrets.API_KEY}}
+    #     API_PASSWORD: ${{secrets.API_PASSWORD}}
         
     - name: Zip Theme
-      run: |
-        node .github/workflows/scripts/theme-zip.js
-
-    - name: List All Themes
-      run: node .github/workflows/scripts/theme-list.js
-      env:
-        SHOP_NAME: ${{secrets.SHOP_NAME}}
-        API_KEY: ${{secrets.API_KEY}}
-        API_PASSWORD: ${{secrets.API_PASSWORD}}
+      run: node .github/workflows/scripts/theme-zip.js
 
     - name: Upload Theme to Shopify & Comment Live Url
       run: |

@@ -39,13 +39,14 @@ const {
             name: themeName,
             src: themeUrl,
         })
-            .then(theme => {
+            .then(async theme => {
                 console.log(theme);
                 console.log(`\x1b[33m %s \x1b[0m`, `View Theme at https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${theme.id}`)
                 await ngrok.kill();
             })
-            .catch(err => {
+            .catch(async err => {
                 console.error(err.response.body);
+                await ngrok.kill();
                 process.exit(1);
             });
     } catch (e) {
