@@ -10,8 +10,10 @@ const {
 
 // Make a 💫
 module.exports.makeAComment = async (commentContent) => {
-    console.log('makeAComment start');
+    console.log(GITHUB_EVENT_PATH);
+
     await fs.readFile(GITHUB_EVENT_PATH, async (err, data) => {
+        console.log('ok gil!');
         if (err) {
             throw err;
         }
@@ -26,5 +28,4 @@ module.exports.makeAComment = async (commentContent) => {
                 .catch(error => console.log(error))
         }
     });
-    console.log('makeAComment end');
 };
