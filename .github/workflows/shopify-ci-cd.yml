@@ -52,7 +52,9 @@ jobs:
       run: node .github/workflows/scripts/theme-zip.js
 
     - name: Upload Theme to Shopify & Comment Live Url
-      run: node .github/workflows/scripts/theme-upload.js
+      run: |
+        node .github/workflows/scripts/theme-check.js
+        node .github/workflows/scripts/theme-upload.js
       env:
         SHOP_NAME: ${{secrets.SHOP_NAME}}
         API_KEY: ${{secrets.API_KEY}}
@@ -61,13 +63,3 @@ jobs:
         GITHUB_EVENT_PATH: ${{secrets.GITHUB_EVENT_PATH}}
         GITHUB_SHA: ${{secrets.GITHUB_SHA}}
         NGROK_AUTH_TOKEN: ${{secrets.NGROK_AUTH_TOKEN}}
-    
-    - name: check if Theme is Previewable & Comment Live Url
-      run: node .github/workflows/scripts/theme-check.js
-      env:
-        SHOP_NAME: ${{secrets.SHOP_NAME}}
-        API_KEY: ${{secrets.API_KEY}}
-        API_PASSWORD: ${{secrets.API_PASSWORD}}
-        GITHUB_REPOSITORY: ${{secrets.GITHUB_REPOSITORY}}
-        GITHUB_EVENT_PATH: ${{secrets.GITHUB_EVENT_PATH}}
-        GITHUB_SHA: ${{secrets.GITHUB_SHA}}
