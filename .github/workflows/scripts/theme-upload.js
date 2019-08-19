@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-//const path = require('path');
 const ngrok = require('ngrok');
-//const liveServer = require("live-server");
-//const server = require('node-http-server');
+const liveServer = require("live-server");
 
 const shopifyClient = require('./lib/shopify-client');
 require('dotenv').config();
@@ -20,8 +18,9 @@ const {
 
 (async function () {
     try {
+        const port = 8181;
         const params = {
-            port: 8181, // Defaults to 8080
+            port, // Defaults to 8080
             open: false, // don't load browser
             file: 'theme.zip', // Server the theme zip directly
             logLevel: 0, // 0 = errors only, 1 = some, 2 = lots
@@ -29,16 +28,9 @@ const {
         };
         liveServer.start(params);
 
-        // server.deploy({
-        //     port: 8000,
-        //     root: path.resolve(),
-        // });
-
-        // console.log(path.resolve());
-
         const ngrokUrl = await ngrok.connect({
             authtoken: NGROK_AUTH_TOKEN,
-            port: 8080,
+            port,
         });
 
         const prNumber = 0;
