@@ -20,7 +20,7 @@ module.exports.makeAComment = async (commentContent) => {
         
         if (content.number != null) {
             console.log('posting comment');
-            comment(GITHUB_AUTH_TOKEN, GITHUB_REPOSITORY, content.number, commentContent)
+            await comment(GITHUB_AUTH_TOKEN, GITHUB_REPOSITORY, content.number, commentContent)
                 .then(response => console.log(response))
                 .catch(error => console.log(error))
         }
