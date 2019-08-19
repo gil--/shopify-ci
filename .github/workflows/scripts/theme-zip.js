@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Credit: Code extracted from Shopify Slate-Tools
 const fs = require('fs');
 const path = require('path');

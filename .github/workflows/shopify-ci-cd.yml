@@ -40,26 +40,34 @@ jobs:
     # - name: Lint Theme Styles
     #   run: |
     #     yarn theme-styles
+
+    # Copy down staging src/config/settings_data.json ?
         
     - name: Zip Theme
       run: |
-        yarn theme-zip
+        node .github/workflows/scripts/theme-zip.js
         
     - name: Move Theme Zip into Artifacts
       run: |
-        mkdir export
-        cp theme.zip export/theme.zip
+        mkdir public
+        cp theme.zip public/theme.zip
 
     - name: List All Themes
-      run: yarn list-themes
+      run: node .github/workflows/scripts/theme-list.js
       env:
         SHOP_NAME: ${{secrets.SHOP_NAME}}
         API_KEY: ${{secrets.API_KEY}}
         API_PASSWORD: ${{secrets.API_PASSWORD}}
-        GITHUB_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Upload Theme to Shopify & Comment Live Url
+      run: |
+        node .github/workflows/scripts/theme-upload.js
+        node .github/workflows/scripts/theme-check.js
+      env:
+        SHOP_NAME: ${{secrets.SHOP_NAME}}
+        API_KEY: ${{secrets.API_KEY}}
+        API_PASSWORD: ${{secrets.API_PASSWORD}}
         GITHUB_REPOSITORY: ${{secrets.GITHUB_REPOSITORY}}
         GITHUB_EVENT_PATH: ${{secrets.GITHUB_EVENT_PATH}}
-
-    # Upload Theme to Shopify
-
-    # Check if live, then send comment
+        GITHUB_EVENT_PATH: ${{secrets.GITHUB_SHA}}
+        NGROK_AUTH_TOKEN: ${{secrets.NGROK_AUTH_TOKEN}}

@@ -1,54 +1,55 @@
-const Shopify = require('shopify-api-node');
-const program = require('commander');
+#!/usr/bin/env node
+
+const ngrok = require('ngrok');
+const liveServer = require("live-server");
+const shopifyClient = require('./lib/shopify-client');
 require('dotenv').config();
 
-/*
-    🎨 Get Theme Url from Arguments
-*/
-let themeUrl = null;
-
-program
-    .version('0.0.1')
-    .option('-t, --theme [url]', 'Add the specified theme.zip url [url]')
-    .parse(process.argv);
-
-if (!program.theme) {
-    console.log('\x1b[31m%s\x1b[0m\x1b[33m %s \x1b[0m', '🔔 Missing theme url. Add:', '--theme [url]');
-    process.exit();
-} else {
-    themeUrl = program.theme;
-}
-
-/*
-    💪 Get Environment Variables
-*/
 const {
     SHOP_NAME,
-    API_KEY,
-    API_PASSWORD
+    NGROK_AUTH_TOKEN,
+    GITHUB_SHA,
 } = process.env;
-
-if (!SHOP_NAME || !API_KEY || !API_PASSWORD) {
-    console.log('\x1b[31m%s\x1b[0m \x1b[1m%s\x1b[0m', '🔔 Missing required ENV variables. Make sure the following exist:', 'SHOP_NAME, API_KEY, API_PASSWORD');
-    process.exit();
-}
-
-/*
-    📡 Initialize Shopify API Creds
-*/
-const shopify = new Shopify({
-    shopName: SHOP_NAME,
-    apiKey: API_KEY,
-    password: API_PASSWORD,
-});
 
 /*
     🌈 Create New Theme Based on Build
 */
-shopify.theme.create({
-    name: `Debut-${Date.now()}`,
-    src: themeUrl,
-}).then(theme => {
-    console.log(theme);
-    console.log(`\x1b[33m %s \x1b[0m`, `View Theme at https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${theme.id}`)
-}, err => console.error(err));
+
+(async function () {
+    try {
+        const params = {
+            port: 8181, // Defaults to 8080
+            open: false, // don't load browser
+            file: "theme.zip", // Server the theme zip directly
+            logLevel: 0, // 0 = errors only, 1 = some, 2 = lots
+        };
+        liveServer.start(params);
+
+        const ngrokUrl = await ngrok.connect({
+            authtoken: NGROK_AUTH_TOKEN,
+            port: 8181,
+        });
+
+        const prNumber = 0;
+        const themeName = `[PR - ${prNumber}] GITHUB-WORKFLOW ${GITHUB_SHA}`;
+        const themeUrl = `${ngrokUrl}`;
+        console.log('themeUrl', themeUrl);
+
+        await shopifyClient.theme.create({
+            name: themeName,
+            src: themeUrl,
+        })
+            .then(theme => {
+                console.log(theme);
+                console.log(`\x1b[33m %s \x1b[0m`, `View Theme at https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${theme.id}`)
+                await ngrok.kill();
+            })
+            .catch(err => {
+                console.error(err.response.body);
+                process.exit(1);
+            });
+    } catch (e) {
+        console.log(e);
+    }
+})();
+
