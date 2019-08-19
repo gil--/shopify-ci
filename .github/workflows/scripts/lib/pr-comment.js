@@ -10,7 +10,8 @@ const {
 
 // Make a 💫
 module.exports.makeAComment = async (commentContent) => {
-    const prNumber = await fs.readFile(GITHUB_EVENT_PATH, async (err, data) => {
+    console.log('makeAComment start');
+    await fs.readFile(GITHUB_EVENT_PATH, async (err, data) => {
         if (err) {
             throw err;
         }
@@ -24,5 +25,6 @@ module.exports.makeAComment = async (commentContent) => {
                 .then(response => console.log(response))
                 .catch(error => console.log(error))
         }
-    });    
+    });
+    console.log('makeAComment end');
 };

@@ -59,7 +59,8 @@ jobs:
         SHOP_NAME: ${{secrets.SHOP_NAME}}
         API_KEY: ${{secrets.API_KEY}}
         API_PASSWORD: ${{secrets.API_PASSWORD}}
+        NGROK_AUTH_TOKEN: ${{secrets.NGROK_AUTH_TOKEN}}
         GITHUB_REPOSITORY: ${{secrets.GITHUB_REPOSITORY}}
         GITHUB_EVENT_PATH: ${{secrets.GITHUB_EVENT_PATH}}
         GITHUB_SHA: ${{secrets.GITHUB_SHA}}
-        NGROK_AUTH_TOKEN: ${{secrets.NGROK_AUTH_TOKEN}}
+        GITHUB_AUTH_TOKEN: ${{secrets.GITHUB_AUTH_TOKEN}}

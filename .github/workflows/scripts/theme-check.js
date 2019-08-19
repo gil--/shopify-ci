@@ -32,6 +32,7 @@ const checkIfThemeIsPreviewable = () => {
                 console.log('✅ Theme is now previewable!')
                 console.log(`\x1b[33m %s \x1b[0m`, `https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${result[0].id}`)
                 await makeAComment(`### Shopify Theme Successfully Deployed<br>[View Preview on Shopify](https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${result[0].id})`);
+                console.log('do u hear me now?');
                 process.exit();
             } else {
                 if (wait >= maxWait) {
