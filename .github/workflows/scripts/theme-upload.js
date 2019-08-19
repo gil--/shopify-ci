@@ -15,7 +15,7 @@ const {
     🌈 Create New Theme Based on Build
 */
 
-(async function () {
+const uploadTheme = async () => {
     try {
         const port = 8181;
         const params = {
@@ -45,16 +45,17 @@ const {
             .then(async theme => {
                 console.log(theme);
                 console.log(`\x1b[33m %s \x1b[0m`, `View Theme at https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${theme.id}`)
-                //await ngrok.kill();
-                
+                await ngrok.kill();  
+                console.log('Hey gil!');
             })
             .catch(async err => {
                 console.error(err.response.body);
-                //await ngrok.kill();
+                await ngrok.kill();
                 process.exit(1);
             });
     } catch (e) {
         console.log(e);
     }
-})();
+};
 
+uploadTheme();
