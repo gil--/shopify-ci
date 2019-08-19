@@ -2,6 +2,8 @@
 
 const ngrok = require('ngrok');
 //const liveServer = require("live-server");
+const server = require('node-http-server');
+
 const shopifyClient = require('./lib/shopify-client');
 require('dotenv').config();
 
@@ -25,6 +27,13 @@ const {
         // };
         // liveServer.start(params);
 
+        server.deploy({
+            port: 8000,
+            root: `${__dirname}/`,
+        });
+
+        console.log(`${__dirname}/`);
+
         const ngrokUrl = await ngrok.connect({
             authtoken: NGROK_AUTH_TOKEN,
             port: 8080,
@@ -32,7 +41,7 @@ const {
 
         const prNumber = 0;
         const themeName = `[PR - ${prNumber}] GITHUB-WORKFLOW ${GITHUB_SHA}`;
-        const themeUrl = `${ngrokUrl}`;
+        const themeUrl = `${ngrokUrl}/theme.zip`;
         console.log('themeUrl', themeUrl);
 
         await shopifyClient.theme.create({
