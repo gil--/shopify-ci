@@ -10,13 +10,13 @@ const {
 
 // Make a 💫
 module.exports.makeAComment = async (commentContent) => {
-    console.log('commentContent', commentContent);
-
     const prNumber = await fs.readFile(GITHUB_EVENT_PATH, (err, data) => {
         if (err) {
             throw err;
         }
         const content = JSON.parse(data.toString());
+        console.log(content);
+        console.log(content.number);
         
         if (content.number != null) {
             console.log('posting comment');
