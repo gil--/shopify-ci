@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
+//const path = require('path');
 const ngrok = require('ngrok');
 //const liveServer = require("live-server");
-const server = require('node-http-server');
+//const server = require('node-http-server');
 
 const shopifyClient = require('./lib/shopify-client');
 require('dotenv').config();
@@ -27,12 +28,12 @@ const {
         // };
         // liveServer.start(params);
 
-        server.deploy({
-            port: 8000,
-            root: `${__dirname}/`,
-        });
+        // server.deploy({
+        //     port: 8000,
+        //     root: path.resolve(),
+        // });
 
-        console.log(`${__dirname}/`);
+        // console.log(path.resolve());
 
         const ngrokUrl = await ngrok.connect({
             authtoken: NGROK_AUTH_TOKEN,
