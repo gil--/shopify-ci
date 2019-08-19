@@ -53,9 +53,6 @@ jobs:
 
     - name: Upload Theme to Shopify & Comment Live Url
       run: |
-        npm i -g http-server
-        http-server --port > /dev/null &
-        curl http://localhost:8080 
         node .github/workflows/scripts/theme-upload.js
         node .github/workflows/scripts/theme-check.js
       env:

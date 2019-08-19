@@ -20,13 +20,14 @@ const {
 
 (async function () {
     try {
-        // const params = {
-        //     port: 8181, // Defaults to 8080
-        //     open: false, // don't load browser
-        //     file: "theme.zip", // Server the theme zip directly
-        //     logLevel: 0, // 0 = errors only, 1 = some, 2 = lots
-        // };
-        // liveServer.start(params);
+        const params = {
+            port: 8181, // Defaults to 8080
+            open: false, // don't load browser
+            file: 'theme.zip', // Server the theme zip directly
+            logLevel: 0, // 0 = errors only, 1 = some, 2 = lots
+            watch: 'theme.zip',
+        };
+        liveServer.start(params);
 
         // server.deploy({
         //     port: 8000,
