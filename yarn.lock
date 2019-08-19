@@ -8691,11 +8691,6 @@ node-gyp@^3.8.0:
     tar "^2.0.0"
     which "1"
 
-node-http-server@^8.1.2:
-  version "8.1.2"
-  resolved "https://registry.yarnpkg.com/node-http-server/-/node-http-server-8.1.2.tgz#b92782e03d545b35bff8791ff8c741221a158b5a"
-  integrity sha512-MB55WSzmWuk3nH1umA56IuTFbXdPRP2uYTlqFRMlYxUolvW7+SRXbvazCaqlstzTK41OM5385P5GPTHLqoLY1g==
-
 node-int64@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"

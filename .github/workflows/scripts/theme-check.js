@@ -10,8 +10,9 @@ const {
 } = process.env;
 
 const prNumber = 0;
-const themeName = `[PR - ${prNumber}] GITHUB-WORKFLOW ${GITHUB_SHA}`;
-const maxWait = 300000; // 3 minutes
+const commitSha = GITHUB_SHA && GITHUB_SHA.substring(0, 5);
+const themeName = `[${prNumber}] GITHUB-PR ${commitSha}`;
+const maxWait = 180000; // 3 minutes
 const waitInterval = 10000; // 10 seconds
 let wait = 0; // start at 0
 
