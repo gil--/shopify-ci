@@ -36,7 +36,6 @@ const uploadTheme = async () => {
         const commitSha = GITHUB_SHA && GITHUB_SHA.substring(0, 5);
         const themeName = `[${prNumber}] SDBOT-GITHUB-PR ${commitSha}`;
         const themeUrl = `${ngrokUrl}/theme.zip`;
-        console.log('themeUrl', themeUrl);
 
         await shopifyClient.theme.create({
             name: themeName,
@@ -45,16 +44,12 @@ const uploadTheme = async () => {
             .then(async theme => {
                 console.log(theme);
                 console.log(`\x1b[33m %s \x1b[0m`, `View Theme at https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${theme.id}`)
-                await ngrok.kill();  
-                console.log('Hey gil!');
-            })
-            .catch(async err => {
-                console.error(err.response.body);
                 await ngrok.kill();
-                process.exit(1);
+                process.exit();
             });
     } catch (e) {
         console.log(e);
+        process.exit(1);
     }
 };
 
