@@ -11,12 +11,14 @@ const {
 
 const prNumber = 0;
 const commitSha = GITHUB_SHA && GITHUB_SHA.substring(0, 5);
-const themeName = `[${prNumber}] GITHUB-PR ${commitSha}`;
+const themeName = `[${prNumber}] SDBOT-GITHUB-PR ${commitSha}`;
 const maxWait = 180000; // 3 minutes
 const waitInterval = 10000; // 10 seconds
 let wait = 0; // start at 0
 
 const checkIfThemeIsPreviewable = () => {
+    console.log('🥵');
+    
     shopifyClient.theme.list()
         .then(async themes => {
             const result = themes.filter(theme => {

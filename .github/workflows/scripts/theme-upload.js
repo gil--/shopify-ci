@@ -34,7 +34,7 @@ const {
 
         const prNumber = 0;
         const commitSha = GITHUB_SHA && GITHUB_SHA.substring(0, 5);
-        const themeName = `[${prNumber}] GITHUB-PR ${commitSha}`;
+        const themeName = `[${prNumber}] SDBOT-GITHUB-PR ${commitSha}`;
         const themeUrl = `${ngrokUrl}/theme.zip`;
         console.log('themeUrl', themeUrl);
 
