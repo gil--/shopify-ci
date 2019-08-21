@@ -3,12 +3,12 @@
 const ngrok = require('ngrok');
 const liveServer = require("live-server");
 const shopifyClient = require('./lib/shopify-client');
+const prData = require('./lib/shopify-client');
 require('dotenv').config();
 
 const {
     SHOP_NAME,
     NGROK_AUTH_TOKEN,
-    GITHUB_SHA,
 } = process.env;
 
 /*
@@ -32,9 +32,10 @@ const uploadTheme = async () => {
             port,
         });
 
-        const prNumber = 0;
+        const prEventData = prData;
+        console.log('prNumber', prEventData.number);
         const commitSha = GITHUB_SHA && GITHUB_SHA.substring(0, 5);
-        const themeName = `[${prNumber}] SDBOT-GITHUB-PR ${commitSha}`;
+        const themeName = `[${prEventData.number}] GITHUB-PR ${commitSha}`;
         const themeUrl = `${ngrokUrl}/theme.zip`;
 
         await shopifyClient.theme.create({
