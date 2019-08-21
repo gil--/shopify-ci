@@ -9,6 +9,7 @@ require('dotenv').config();
 const {
     SHOP_NAME,
     NGROK_AUTH_TOKEN,
+    GITHUB_SHA,
 } = process.env;
 
 /*
