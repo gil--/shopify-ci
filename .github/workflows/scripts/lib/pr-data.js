@@ -6,7 +6,7 @@ const {
 } = process.env;
 
 module.exports.getPrData = async () => {
-    return fs.readFileSync(GITHUB_EVENT_PATH, 'utf8');
+    return JSON.parse(fs.readFileSync(GITHUB_EVENT_PATH));
     // return await fs.readFile(GITHUB_EVENT_PATH, async (err, data) => {
     //     if (err) {
     //         throw err;
