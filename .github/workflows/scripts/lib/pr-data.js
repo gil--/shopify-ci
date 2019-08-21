@@ -12,6 +12,7 @@ module.exports.getPrData = async () => {
         }
 
         const content = JSON.parse(data.toString());
+        console.log('yo gil it\'s me, data man');
         return content;
     });
 };

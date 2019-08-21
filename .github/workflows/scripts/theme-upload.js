@@ -34,6 +34,7 @@ const uploadTheme = async () => {
         });
 
         const data = await prData.getPrData();
+        console.log('data', data);
         const commitSha = GITHUB_SHA && GITHUB_SHA.substring(0, 5);
         const themeName = `[${data.number}] GITHUB-PR ${commitSha}`;
         const themeUrl = `${ngrokUrl}/theme.zip`;
