@@ -3,15 +3,17 @@
 require('dotenv').config();
 const shopifyClient = require('./lib/shopify-client');
 const makeAComment = require('./lib/pr-comment').makeAComment();
+const prData = require('./lib/pr-data');
 
 const {
     SHOP_NAME,
     GITHUB_SHA,
 } = process.env;
 
-const prNumber = 0;
+const data = prData.getPrData();
+const prNumber = data.number;
 const commitSha = GITHUB_SHA && GITHUB_SHA.substring(0, 5);
-const themeName = `[${prNumber}] SDBOT-GITHUB-PR ${commitSha}`;
+const themeName = `[${prNumber}] GITHUB-PR ${commitSha}`;
 const maxWait = 180000; // 3 minutes
 const waitInterval = 10000; // 10 seconds
 let wait = 0; // start at 0
@@ -31,7 +33,10 @@ const checkIfThemeIsPreviewable = () => {
             if (result[0].previewable) {
                 console.log('✅ Theme is now previewable!')
                 console.log(`\x1b[33m %s \x1b[0m`, `https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${result[0].id}`)
-                await makeAComment(`### Shopify Theme Successfully Deployed<br>[View Preview on Shopify](https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${result[0].id})`);
+                await makeAComment({
+                    prNumber,
+                    message: `### Shopify Theme Successfully Deployed<br>[View Preview on Shopify](https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${result[0].id})`,
+                });
                 process.exit();
             } else {
                 if (wait >= maxWait) {
