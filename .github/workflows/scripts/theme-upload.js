@@ -33,9 +33,9 @@ const uploadTheme = async () => {
             port,
         });
 
-        const prData = await prData.getPrData();
+        const data = await prData.getPrData();
         const commitSha = GITHUB_SHA && GITHUB_SHA.substring(0, 5);
-        const themeName = `[${prData.number}] GITHUB-PR ${commitSha}`;
+        const themeName = `[${data.number}] GITHUB-PR ${commitSha}`;
         const themeUrl = `${ngrokUrl}/theme.zip`;
 
         await shopifyClient.theme.create({
