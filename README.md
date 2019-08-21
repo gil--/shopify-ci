@@ -6,7 +6,7 @@
 - github-comment
 - @shopify/theme-lint
 
-### Secrets
+### Secrets 
 
 Go to `/settings/secrets/new`
 
