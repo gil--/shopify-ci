@@ -33,7 +33,7 @@ const uploadTheme = async () => {
             port,
         });
 
-        const data = await prData.getPrData();
+        const data = prData.getPrData();
         console.log('data', data);
         const commitSha = GITHUB_SHA && GITHUB_SHA.substring(0, 5);
         const themeName = `[${data.number}] GITHUB-PR ${commitSha}`;
