@@ -63,4 +63,4 @@ jobs:
         GITHUB_REPOSITORY: ${{secrets.GITHUB_REPOSITORY}}
         GITHUB_EVENT_PATH: ${{secrets.GITHUB_EVENT_PATH}}
         GITHUB_SHA: ${{secrets.GITHUB_SHA}}
-        GITHUB_AUTH_TOKEN: ${{secrets.GITHUB_AUTH_TOKEN}}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
