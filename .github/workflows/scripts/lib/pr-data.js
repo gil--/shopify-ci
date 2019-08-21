@@ -5,7 +5,7 @@ const {
     GITHUB_EVENT_PATH,
 } = process.env;
 
-const prData = async () => {
+module.exports.getPrData = async () => {
     return await fs.readFile(GITHUB_EVENT_PATH, async (err, data) => {
         console.log('ok gil1!');
         
@@ -19,8 +19,6 @@ const prData = async () => {
         const content = JSON.parse(data.toString());
         
         console.log(content);
-        return content
+        return content;
     });
 };
-
-module.exports = prData;

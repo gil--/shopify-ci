@@ -3,7 +3,7 @@
 const ngrok = require('ngrok');
 const liveServer = require("live-server");
 const shopifyClient = require('./lib/shopify-client');
-const prData = require('./lib/shopify-client');
+const getPrData = require('./lib/pr-data').getPrData();
 require('dotenv').config();
 
 const {

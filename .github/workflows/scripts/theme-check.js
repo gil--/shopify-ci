@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 const shopifyClient = require('./lib/shopify-client');
-const makeAComment = require('./lib/pr-comment').makeAComment;
+const makeAComment = require('./lib/pr-comment').makeAComment();
 
 const {
     SHOP_NAME,
