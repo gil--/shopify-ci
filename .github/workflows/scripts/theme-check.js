@@ -35,7 +35,6 @@ const checkIfThemeIsPreviewable = () => {
                 await makeAComment.makeAComment({
                     number: prNumber,
                     message: `### Shopify Theme Successfully Deployed
-                    <br>
                     [View Preview on Shopify](https://${SHOP_NAME}.myshopify.com/?preview_theme_id=${result[0].id})`,
                 });
                 process.exit();
