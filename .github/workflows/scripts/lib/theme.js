@@ -7,7 +7,7 @@ const {
 
 module.exports.getThemeName = ({ prNumber }) => {
     const commitSha = GITHUB_SHA && GITHUB_SHA.substring(0, 6);
-    const branch = GITHUB_REF.replace('ref/').replace('headers/');
+    const branch = GITHUB_REF.replace('ref/', '').replace('headers/', '');
 
     if (prNumber) {
         return `GITHUB-PR-${prNumber} ${commitSha}`;
