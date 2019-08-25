@@ -1,6 +1,11 @@
 name: Merged PR Cleanup
 # This workflow is triggered on pull_request
-on: [pull_request]
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - integration/*
 
 jobs:
   delete_theme_preview:
