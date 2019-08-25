@@ -6,13 +6,16 @@ const theme = require('./lib/theme');
 
 const listTheme = async () => {
     const data = prData.getPrData();
-    const newThemeName = theme.getThemeName({ prNumber: data.number });
-    const themeNameRegex = `GITHUB-PR-${data.number}`;
-
+    
+    console.log(data.action);
+    
     if (data.action !== 'synchronize') {
         // we only need to delete PR theme when it's a PR synchronization
         return;
     }
+    
+    const newThemeName = theme.getThemeName({ prNumber: data.number });
+    const themeNameRegex = `GITHUB-PR-${data.number}`;
 
     await shopifyClient.theme.list()
         .then(themes => {
