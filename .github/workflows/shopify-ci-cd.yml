@@ -33,6 +33,11 @@ jobs:
         npm i -g @shopify/theme-lint
         theme-lint ./src
 
+    - name: Lint Theme Config Files
+      run: |
+        npm i -g jsonlint-tree
+        jsonlint-tree src/config
+        
     # - name: TODO: Lint Theme JS
     #   run: yarn lint
     
