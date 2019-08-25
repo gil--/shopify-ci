@@ -8,8 +8,10 @@ const listTheme = async () => {
     const data = prData.getPrData();
     
     console.log(data.action);
+    console.log('~~~~~~~~~')
+    console.log(data);
     
-    if (data.action !== 'synchronize' || data.action !== 'closed') {
+    if (data.action !== 'synchronize') {
         // we only need to delete PR theme when it's a PR synchronization
         return;
     }
