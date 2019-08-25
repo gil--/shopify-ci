@@ -1,0 +1,32 @@
+name: Merged PR Cleanup
+# This workflow is triggered on pull_request
+on: [pull_request]
+
+jobs:
+  delete_theme_preview:
+    name: Delete Theme Preview
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+        version: 10.x
+
+    - name: Use Yarn 1.17.2
+      run: |
+        npm install -g yarn@1.17.2
+        yarn
+    
+    - name: Delete Theme
+      run: node .github/workflows/scripts/theme-delete.js
+      env:
+        SHOP_NAME: ${{secrets.SHOP_NAME}}
+        API_KEY: ${{secrets.API_KEY}}
+        API_PASSWORD: ${{secrets.API_PASSWORD}}
+        GITHUB_REPOSITORY: ${{secrets.GITHUB_REPOSITORY}}
+        GITHUB_EVENT_PATH: ${{secrets.GITHUB_EVENT_PATH}}
+        GITHUB_SHA: ${{secrets.GITHUB_SHA}}
+        GITHUB_REF: ${{secrets.GITHUB_REF}}
